@@ -648,9 +648,10 @@ html[dir="rtl"] .primary-nav {
   .primary-nav {
     position: absolute;
     top: calc(100% + 8px);
-    right: 4vw;
+    right: 1rem;
     left: auto;
-    width: min(330px, 92vw);
+    width: min(330px, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
     padding: 1rem;
     border-radius: 14px;
     background: rgba(10, 16, 38, 0.97);
@@ -664,9 +665,14 @@ html[dir="rtl"] .primary-nav {
   }
 
   html[dir="rtl"] .primary-nav {
-    left: 4vw;
+    left: 1rem;
     right: auto;
     align-items: flex-end;
+  }
+
+  .primary-nav a {
+    width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .primary-nav[data-open="true"] {
