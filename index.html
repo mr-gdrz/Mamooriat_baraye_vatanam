@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mamooriat Baraye Vatanam</title>
+  <meta
+    name="description"
+    content="Mamooriat Baraye Vatanam - a community-led movement page with volunteer actions, outreach, and Donorbox support."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Sora:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <script>
+    (function () {
+      try {
+        var savedLanguage = localStorage.getItem("mbv_site_language");
+        if (savedLanguage === "fa" || savedLanguage === "en") {
+          document.documentElement.setAttribute("data-pref-lang", savedLanguage);
+        }
+      } catch (error) {
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    window.DonorBox = window.DonorBox || {};
+    window.DonorBox.widgetLinkClassName = "custom-dbox-popup";
+  </script>
+  <script src="https://donorbox.org/install-popup-button.js" type="text/javascript" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div id="language-gate" class="language-gate" role="dialog" aria-modal="true" aria-labelledby="language-gate-title">
+    <div class="language-card">
+      <p id="language-gate-title" class="language-title" data-i18n="gateTitle">Choose your language</p>
+      <p class="language-subtitle" data-i18n="gateSubtitle">Select one to continue</p>
+      <div class="language-options">
+        <button type="button" class="lang-choice" data-lang-choice="fa" data-i18n="gateFarsi">Farsi</button>
+        <button type="button" class="lang-choice" data-lang-choice="en" data-i18n="gateEnglish">English</button>
+      </div>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main" data-i18n="skipToContent">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Mamooriat Baraye Vatanam Home" data-i18n-attr="aria-label:brandAria">
+        <span class="brand-mark" aria-hidden="true">MBV</span>
+        <span class="brand-text" data-i18n="brandText">Mamooriat Baraye Vatanam</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open navigation"
+        data-i18n-attr="aria-label:menuOpenAria"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:navAria">
+        <a href="#mission" data-i18n="navMission">Mission</a>
+        <a href="#action" data-i18n="navGetInvolved">Get Involved</a>
+        <a href="#donate" data-i18n="navDonate">Donate</a>
+        <a href="https://x.com/M_F_My_Country" target="_blank" rel="noopener noreferrer" data-i18n="navX">X</a>
+        <a
+          href="https://www.instagram.com/mamooriat_baraye_vatanam/"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="navInstagram"
+        >
+          Instagram
+        </a>
+        <div class="lang-switch" role="group" aria-label="Language switch" data-i18n-attr="aria-label:languageSwitchAria">
+          <button type="button" class="lang-toggle" data-set-lang="fa">FA</button>
+          <button type="button" class="lang-toggle" data-set-lang="en">EN</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow" data-i18n="heroEyebrow">Grassroots | Unity | Action</p>
+          <h1 data-i18n="heroTitle">Together for a Free Iran</h1>
+          <p class="hero-lead" data-i18n="heroLead">
+            A community-led voice for dignity, freedom, and democratic transition. We organize,
+            mobilize, and speak with one message: Iran belongs to its people.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#action" data-i18n="heroGetInvolved">Get Involved</a>
+            <a class="btn btn-outline custom-dbox-popup" id="donate-hero-btn" href="#">
+              <span data-i18n="heroDonate">Donate with Donorbox</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-panel reveal">
+          <div class="panel panel-a">
+            <h2 data-i18n="panelPurposeTitle">Purpose</h2>
+            <p data-i18n="panelPurposeText">Build visible, peaceful, and organized support for democratic change.</p>
+          </div>
+          <div class="panel panel-b">
+            <h2 data-i18n="panelApproachTitle">Approach</h2>
+            <p data-i18n="panelApproachText">Community events, digital outreach, volunteer coordination, and transparent funding.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mission" class="mission section-pad">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="missionEyebrow">Our Mission</p>
+          <h2 data-i18n="missionTitle">Supporting freedom through organized civic action</h2>
+          <p data-i18n="missionText">
+            We connect diaspora communities and allies to amplify awareness, coordinate peaceful
+            events, and sustain momentum through practical local work.
+          </p>
+        </div>
+
+        <div class="stats reveal">
+          <article>
+            <h3 data-i18n="statCommunityTitle">Community-Led</h3>
+            <p data-i18n="statCommunityText">Built by volunteers and supporters working side by side.</p>
+          </article>
+          <article>
+            <h3 data-i18n="statTransparentTitle">Transparent</h3>
+            <p data-i18n="statTransparentText">Donations are focused on logistics, coordination, and event delivery.</p>
+          </article>
+          <article>
+            <h3 data-i18n="statConsistentTitle">Consistent</h3>
+            <p data-i18n="statConsistentText">Ongoing outreach keeps the message visible and active.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pillars section-pad">
+      <div class="container cards">
+        <article class="card reveal">
+          <h2 data-i18n="pillarUnityTitle">National Unity</h2>
+          <p data-i18n="pillarUnityText">Stand for a free, sovereign, and united Iran built on mutual respect.</p>
+        </article>
+        <article class="card reveal">
+          <h2 data-i18n="pillarRightsTitle">Democratic Rights</h2>
+          <p data-i18n="pillarRightsText">Defend civil liberties, equality under law, and freedom of expression.</p>
+        </article>
+        <article class="card reveal">
+          <h2 data-i18n="pillarTransitionTitle">Democratic Transition</h2>
+          <p data-i18n="pillarTransitionText">Promote peaceful, accountable, and representative governance.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="action" class="action section-pad">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="actionEyebrow">Get Involved</p>
+          <h2 data-i18n="actionTitle">Your participation turns support into momentum</h2>
+        </div>
+        <div class="action-grid">
+          <article class="action-item reveal">
+            <h3 data-i18n="actionSupportTitle">Support</h3>
+            <p data-i18n="actionSupportText">Help fund permits, audio setup, safety logistics, and coordination work.</p>
+          </article>
+          <article class="action-item reveal">
+            <h3 data-i18n="actionVolunteerTitle">Volunteer</h3>
+            <p data-i18n="actionVolunteerText">Contribute on event days or behind the scenes with planning and outreach.</p>
+          </article>
+          <article class="action-item reveal">
+            <h3 data-i18n="actionShareTitle">Share</h3>
+            <p data-i18n="actionShareText">Use your social channels to spread updates and invite others to join.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="donate" class="donate section-pad">
+      <div class="container donate-wrap reveal">
+        <p class="eyebrow" data-i18n="donateEyebrow">Power the Movement</p>
+        <h2 data-i18n="donateTitle">Contribute Through Donorbox</h2>
+        <p data-i18n="donateText">
+          Every contribution helps cover essential operations for rallies and community organizing:
+          permits, venue needs, volunteer coordination, and public outreach.
+        </p>
+        <div class="donate-actions">
+          <a class="btn btn-solid custom-dbox-popup" id="donate-main-btn" href="#">
+            <span data-i18n="donateNow">Donate Now</span>
+          </a>
+          <a class="btn btn-outline" id="donorbox-direct-link" href="#" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="donateOpenPage">Open Donorbox Page</span>
+          </a>
+        </div>
+        <p class="donate-note">
+          <span data-i18n="donateNotePrefix">Set your campaign URL in</span> <code>script.js</code> <span data-i18n="donateNoteMiddle">by replacing</span>
+          <code>https://donorbox.org/your-campaign-slug</code>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p data-i18n="footerBrand">Mamooriat Baraye Vatanam</p>
+      <div class="socials">
+        <a href="https://x.com/M_F_My_Country" target="_blank" rel="noopener noreferrer" data-i18n="footerX">X Account</a>
+        <a
+          href="https://www.instagram.com/mamooriat_baraye_vatanam/"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="footerInstagram"
+        >
+          Instagram
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
