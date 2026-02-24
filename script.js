@@ -3,6 +3,18 @@ const DONORBOX_PLACEHOLDER = "your-campaign-slug";
 const LANGUAGE_STORAGE_KEY = "mbv_site_language";
 const DEFAULT_LANGUAGE = "en";
 const SUPPORTED_LANGUAGES = ["fa", "en"];
+const FOCUSABLE_SELECTOR = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled]):not([type='hidden'])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "[tabindex]:not([tabindex='-1'])"
+].join(", ");
+const GATE_PREV_ARIA_HIDDEN_ATTR = "data-gate-prev-aria-hidden";
+const GATE_MANAGED_INERT_ATTR = "data-gate-managed-inert";
+
+let gateFocusTrapHandler = null;
 
 const translations = {
   en: {
@@ -181,6 +193,108 @@ function setStoredLanguage(language) {
   }
 }
 
+function getFocusableElements(container) {
+  if (!container) return [];
+
+  return Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR)).filter(
+    (element) => {
+      if (!(element instanceof HTMLElement)) return false;
+      if (element.hasAttribute("disabled")) return false;
+      return true;
+    }
+  );
+}
+
+function setGateBackgroundState(isBlocked) {
+  const gate = document.getElementById("language-gate");
+  if (!gate) return;
+
+  Array.from(document.body.children).forEach((element) => {
+    if (!(element instanceof HTMLElement) || element === gate) return;
+
+    if (isBlocked) {
+      if (!element.hasAttribute(GATE_PREV_ARIA_HIDDEN_ATTR)) {
+        const previous = element.getAttribute("aria-hidden");
+        if (previous !== null) {
+          element.setAttribute(GATE_PREV_ARIA_HIDDEN_ATTR, previous);
+        }
+      }
+
+      element.setAttribute("aria-hidden", "true");
+
+      if ("inert" in element) {
+        element.inert = true;
+        element.setAttribute(GATE_MANAGED_INERT_ATTR, "true");
+      }
+      return;
+    }
+
+    if (element.hasAttribute(GATE_MANAGED_INERT_ATTR)) {
+      element.inert = false;
+      element.removeAttribute(GATE_MANAGED_INERT_ATTR);
+    }
+
+    const previousAriaHidden = element.getAttribute(GATE_PREV_ARIA_HIDDEN_ATTR);
+    if (previousAriaHidden !== null) {
+      element.setAttribute("aria-hidden", previousAriaHidden);
+      element.removeAttribute(GATE_PREV_ARIA_HIDDEN_ATTR);
+    } else {
+      element.removeAttribute("aria-hidden");
+    }
+  });
+}
+
+function removeGateFocusTrap() {
+  if (!gateFocusTrapHandler) return;
+  document.removeEventListener("keydown", gateFocusTrapHandler);
+  gateFocusTrapHandler = null;
+}
+
+function setupGateFocusTrap(gate) {
+  if (!gate) return;
+
+  removeGateFocusTrap();
+
+  const initialFocusable = getFocusableElements(gate);
+  if (initialFocusable.length) {
+    initialFocusable[0].focus();
+  } else {
+    gate.setAttribute("tabindex", "-1");
+    gate.focus();
+  }
+
+  gateFocusTrapHandler = (event) => {
+    if (event.key !== "Tab" || gate.hidden) return;
+
+    const focusable = getFocusableElements(gate);
+    if (!focusable.length) {
+      event.preventDefault();
+      gate.focus();
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const activeElement = document.activeElement;
+    const isOutsideGate = !activeElement || !gate.contains(activeElement);
+
+    if (event.shiftKey) {
+      if (activeElement === first || isOutsideGate) {
+        event.preventDefault();
+        last.focus();
+      }
+      return;
+    }
+
+    if (activeElement === last || isOutsideGate) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
+  document.addEventListener("keydown", gateFocusTrapHandler);
+}
+
 function updateLanguageButtons(language) {
   document.querySelectorAll("[data-set-lang]").forEach((button) => {
     const active = button.getAttribute("data-set-lang") === language;
@@ -228,13 +342,19 @@ function openLanguageGate() {
   if (!gate) return;
   gate.hidden = false;
   document.body.classList.add("gate-open");
+  setGateBackgroundState(true);
+  setupGateFocusTrap(gate);
 }
 
 function closeLanguageGate() {
   const gate = document.getElementById("language-gate");
   if (!gate) return;
+  const wasOpen = document.body.classList.contains("gate-open");
   gate.hidden = true;
   document.body.classList.remove("gate-open");
+  if (!wasOpen) return;
+  setGateBackgroundState(false);
+  removeGateFocusTrap();
 }
 
 function setupLanguageSelection() {

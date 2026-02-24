@@ -542,6 +542,20 @@ html[data-pref-lang] .language-gate {
   color: #fff;
 }
 
+/* Keep Donorbox reminder widget inside viewport to avoid horizontal scroll. */
+.dbox-reminder-widget {
+  right: 0.75rem !important;
+  left: auto !important;
+  max-width: min(360px, calc(100vw - 1.5rem)) !important;
+  box-sizing: border-box !important;
+  transform: translateX(0) !important;
+}
+
+html[dir="rtl"] .dbox-reminder-widget {
+  left: 0.75rem !important;
+  right: auto !important;
+}
+
 .site-footer {
   padding: 1.5rem 0;
   background: #090e1f;
@@ -648,6 +662,17 @@ html[dir="rtl"] .primary-nav {
 }
 
 @media (max-width: 760px) {
+  .dbox-reminder-widget {
+    right: 0.5rem !important;
+    left: auto !important;
+    max-width: calc(100vw - 1rem) !important;
+  }
+
+  html[dir="rtl"] .dbox-reminder-widget {
+    left: 0.5rem !important;
+    right: auto !important;
+  }
+
   .menu-toggle {
     display: inline-grid;
     place-content: center;
